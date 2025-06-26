@@ -1,0 +1,52 @@
+# PMS 기본 설정
+system:
+  connection_timeout: 10   # Modbus 연결 타임아웃 (초) - 폴링 실패 방지를 위해 증가
+
+mqtt:
+  broker: "139.150.70.42"
+  port: 1883
+  username: ""
+  password: ""
+  keepalive: 60
+  client_id: "pms_client"
+  base_topic: "pms"
+
+# 장비 목록 (type 필수)
+devices:
+  - name: "대실마을_BMS"
+    type: "BMS"
+    ip: "192.168.3.37"
+    port: 502
+    slave_id: 1
+    poll_interval: 2
+    
+  - name: "대실마을_DCDC"
+    type: "DCDC"
+    ip: "192.168.3.27"
+    port: 502
+    slave_id: 1
+    poll_interval: 2
+    
+  - name: "대실마을_PCS"
+    type: "PCS"
+    ip: "192.168.3.17"
+    port: 502
+    slave_id: 1
+    poll_interval: 2
+
+# 자동 운전 모드 설정
+auto_mode:
+  enabled: true
+  soc_high_threshold: 88.0        # SOC 상한 임계값 (%)
+  soc_low_threshold: 5.0          # SOC 하한 임계값 (%)
+  soc_charge_stop_threshold: 25.0 # 충전 정지 SOC (%)
+  dcdc_standby_time: 30           # DCDC 대기 시간 (초)
+  command_interval: 5             # 명령 간격 (초)
+  soc_monitor_interval: 2.0       # SOC 모니터링 간격 (초)
+  charging_power: 10.0            # 충전 전력 (kW)
+
+# 로깅 설정
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/pms.log" 

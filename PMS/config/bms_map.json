@@ -1,0 +1,791 @@
+{
+  "device_type": "BMS",
+  "description": "범한배터리 BMS Modbus 레지스터 맵 (Function Code 0x03: Read, 0x06: Write)",
+  "function_codes": {
+    "read_holding_registers": "0x03",
+    "write_single_register": "0x06"
+  },
+  "data_registers": {
+    "rack_voltage": {
+      "address": 0,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "Rack Voltage",
+      "rw": "R"
+    },
+    "rack_current": {
+      "address": 1,
+      "function_code": "0x03",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "Rack Current",
+      "rw": "R"
+    },
+    "battery_soc": {
+      "address": 2,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "%",
+      "description": "Battery SOC",
+      "rw": "R"
+    },
+    "module_max_temperature": {
+      "address": 3,
+      "function_code": "0x03",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "Module Max Temperature",
+      "rw": "R"
+    },
+    "module_min_temperature": {
+      "address": 4,
+      "function_code": "0x03",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "Module Min Temperature",
+      "rw": "R"
+    },
+    "module_avg_temperature": {
+      "address": 5,
+      "function_code": "0x03",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "Module Avg Temperature",
+      "rw": "R"
+    },
+    "battery_cell_max_voltage": {
+      "address": 6,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Battery Cell Max Voltage",
+      "rw": "R"
+    },
+    "battery_cell_min_voltage": {
+      "address": 7,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Battery Cell Min Voltage",
+      "rw": "R"
+    },
+    "battery_cell_avg_voltage": {
+      "address": 8,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Battery Cell Avg Voltage",
+      "rw": "R"
+    },
+    "operating_soc_max": {
+      "address": 9,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "%",
+      "description": "Operating SOC Max",
+      "rw": "R"
+    },
+    "operating_soc_min": {
+      "address": 10,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "%",
+      "description": "Operating SOC Min",
+      "rw": "R"
+    },
+    "operating_voltage_max": {
+      "address": 11,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "V",
+      "description": "Operating Voltage Max",
+      "rw": "R"
+    },
+    "operating_voltage_min": {
+      "address": 12,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "V",
+      "description": "Operating Voltage Min",
+      "rw": "R"
+    },
+    "rack_soh": {
+      "address": 13,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "%",
+      "description": "Rack SOH",
+      "rw": "R"
+    }
+  },
+  "module_voltages": {
+    "module_0_voltage": {
+      "address": 14,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.01,
+      "unit": "V",
+      "description": "Module 0 Voltage",
+      "rw": "R"
+    },
+    "module_1_voltage": {
+      "address": 15,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.01,
+      "unit": "V",
+      "description": "Module 1 Voltage",
+      "rw": "R"
+    },
+    "module_2_voltage": {
+      "address": 16,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.01,
+      "unit": "V",
+      "description": "Module 2 Voltage",
+      "rw": "R"
+    }
+  },
+  "status_registers": {
+    "system_lock_status_1": {
+      "address": 70,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "System Lock Rack/Module Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "Relay off Fail",
+        "1": "Fuse Fail",
+        "3": "Module BMS ↔ Rack BMS - Loss of Comm, SPI Communication Error",
+        "6": "AFE Error",
+        "7": "Vref2 Error",
+        "8": "PEC Error",
+        "9": "CAN Communication Error [Multi Rack : SBMS-RBMS]",
+        "10": "MODBUS Communication Error [Single Rack : RBMS-PMS]",
+        "11": "EEPROM R/W Fail"
+      }
+    },
+    "system_lock_status_2": {
+      "address": 71,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "System Lock Rack/Module Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "Charge Over Current Error",
+        "1": "Discharge Over Current Error",
+        "4": "Rack/Module/Cell Over Voltage Error",
+        "5": "Rack/Module/Cell Under Voltage Error",
+        "6": "Cell V Imbalance Error",
+        "7": "Module/Cell Over Temperature Error",
+        "8": "Module/Cell Under Temperature Error",
+        "9": "Cell Temperature Imbalance Error",
+        "10": "Current Sensor Fail",
+        "11": "Current Sensor Fail",
+        "12": "Current Sensor Fail",
+        "13": "PRA Fail",
+        "14": "PRA Fail",
+        "15": "PRA Fail"
+      }
+    },
+    "system_lock_self_test_1": {
+      "address": 72,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "System Lock Self Test Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "ST_GPIO_Input Test Fail",
+        "1": "ST_GPIO_Output Test Fail",
+        "2": "ST_Flash Memory Checksum Fail",
+        "3": "ST_ADC Test Fail",
+        "4": "ST_Clock Test Fail",
+        "5": "ST_SPI Communication Test Fail",
+        "6": "ST_CAN Communication Test Fail",
+        "7": "ST_Watchdog Test Fail",
+        "8": "ST_External_Watchdog Fail, External Watchdog FB Fail"
+      }
+    },
+    "system_lock_self_test_2": {
+      "address": 73,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "System Lock Self Test Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "ST_CPU Registers Fail",
+        "1": "ST_FPU Registers Fail",
+        "2": "ST_Program Counter Test Fail",
+        "3": "ST_RAM_L0 Test Fail",
+        "4": "ST_RAM_L1 Test Fail",
+        "5": "ST_RAM_L2 Test Fail",
+        "6": "ST_RAM_L3 Test Fail",
+        "7": "ST_RAM_L4 Test Fail",
+        "8": "ST_RAM_L5 Test Fail",
+        "9": "ST_RAM_L6 Test Fail",
+        "10": "ST_RAM_L7 Test Fail",
+        "12": "ST_CPU_Timer0_Test Fail",
+        "13": "ST_CPU_Timer1_Test Fail",
+        "14": "ST_CPU_Timer2_Test Fail",
+        "15": "ST_Interrupt Test Fail"
+      }
+    },
+    "battery_system_alarm": {
+      "address": 80,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Battery System Alarm (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "Over Voltage",
+        "1": "Under Voltage",
+        "2": "Temperature(Over/Under)",
+        "3": "Charge Over Current",
+        "4": "Discharge Over Current",
+        "5": "Cell Delta V",
+        "6": "Low SOC",
+        "7": "HW Alarm",
+        "8": "System Lock"
+      }
+    },
+    "battery_system_operation_mode": {
+      "address": 81,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Battery System Operation Mode (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "Standby (1: Complete Initialize, 0: Initializing)",
+        "1": "Charging",
+        "2": "Discharging",
+        "3": "Idle - RELAY ON"
+      }
+    },
+    "battery_system_warning": {
+      "address": 82,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Battery System Warning Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "Over Charge Current Warning (OCCW)",
+        "1": "Over Discharge Current Warning (ODCW)",
+        "2": "Over Temperature Warning (OTW)",
+        "3": "Under Temperature Warning (UTW)",
+        "4": "Under Voltage Warning (UVW)",
+        "5": "Over Voltage Warning (OVW)",
+        "6": "Under SOC Warning (USOCW)",
+        "7": "Over SOC Warning (OSOCW)",
+        "8": "Cell Over Voltage Warning",
+        "9": "Cell Under Voltage Warning"
+      }
+    },
+    "battery_system_error": {
+      "address": 83,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Battery System Error Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "Over Charge Current Fault (OCCF)",
+        "1": "Over Discharge Current Fault (ODCF)",
+        "2": "External Watchdog FB Fail",
+        "3": "EEPROM R/W Fail",
+        "4": "HV Sensor Fail",
+        "5": "CT Sensor Fail",
+        "6": "PRA Fail",
+        "7": "Fuse Fail",
+        "8": "Relay off Fail",
+        "9": "Rack Over Voltage Error",
+        "10": "Rack Under Voltage Error",
+        "11": "IEC60730 Self Diagnostic Error",
+        "12": "CAN Communication Error [SBMS-RBMS]",
+        "13": "System Lock"
+      }
+    },
+    "battery_module_error": {
+      "address": 84,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Battery Module Error Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "Cell Over Voltage Error",
+        "1": "Cell Under Voltage Error",
+        "2": "Cell Over Temperature Error",
+        "3": "Cell Under Temperature Error",
+        "4": "Cell Temperature Imbalance",
+        "5": "Cell V Imbalance Error",
+        "6": "PEC Error",
+        "7": "Vref2 Error",
+        "8": "Module BMS ↔ Rack BMS - Loss of Comm (MRLOC)",
+        "9": "Cell V Imbalance Warning",
+        "10": "AFE Error"
+      }
+    },
+    "error_code_1": {
+      "address": 85,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Error Code 1 (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "Module Over Voltage Error",
+        "1": "Module Under Voltage Error",
+        "2": "Module Over Temperature Error",
+        "3": "Module Under Temperature Error",
+        "4": "External Watchdog FB Fail",
+        "5": "EEPROM R/W Fail",
+        "6": "Invalid Pack Voltage Fail",
+        "7": "Current Sensor Fail",
+        "8": "Rack Charge Over Current Error",
+        "9": "Rack Discharge Over Current Error",
+        "10": "Rack Over Voltage Error",
+        "11": "Rack Under Voltage Error",
+        "12": "PRA Fail",
+        "13": "Main Fuse Fail",
+        "14": "Relay off Fail",
+        "15": "Cell Imbalance [V&T]"
+      }
+    },
+    "error_code_2": {
+      "address": 86,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Error Code 2 (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "IEC60730 Self Test Fail",
+        "1": "PEC Error",
+        "2": "SPI Communication Error",
+        "3": "MODBUS Communication Error [Single Rack : RBMS-PMS]",
+        "4": "CAN Communication Error [Multi Rack : SBMS-RBMS]",
+        "5": "Vref2 Error",
+        "6": "AFE Error",
+        "7": "System Lock"
+      }
+    },
+    "fire_alarm": {
+      "address": 87,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Fire Alarm (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "Smoke Sensor Status [0: Normal / 1: Fault]",
+        "15": "Fire Alarm [0: Normal / 1: Alarm]"
+      }
+    },
+    "communication_count": {
+      "address": 59,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Communication Count [Reset Count : 10,000]",
+      "rw": "R"
+    }
+  },
+  "module_status_registers": {
+    "module_0_status": {
+      "address": 96,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Module 0 Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "UV Warning",
+        "1": "UV Error",
+        "2": "OV Warning",
+        "3": "OV Error",
+        "4": "OT Warning",
+        "5": "OT Error",
+        "6": "UT Warning",
+        "7": "UT Error",
+        "8": "AFE Error"
+      }
+    },
+    "module_1_status": {
+      "address": 97,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Module 1 Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "UV Warning",
+        "1": "UV Error",
+        "2": "OV Warning",
+        "3": "OV Error",
+        "4": "OT Warning",
+        "5": "OT Error",
+        "6": "UT Warning",
+        "7": "UT Error",
+        "8": "AFE Error"
+      }
+    },
+    "module_2_status": {
+      "address": 98,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Module 2 Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "UV Warning",
+        "1": "UV Error",
+        "2": "OV Warning",
+        "3": "OV Error",
+        "4": "OT Warning",
+        "5": "OT Error",
+        "6": "UT Warning",
+        "7": "UT Error",
+        "8": "AFE Error"
+      }
+    },
+    "module_3_status": {
+      "address": 99,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Module 3 Status (Bit Mask)",
+      "type": "bitmask",
+      "rw": "R",
+      "bit_definitions": {
+        "0": "UV Warning",
+        "1": "UV Error",
+        "2": "OV Warning",
+        "3": "OV Error",
+        "4": "OT Warning",
+        "5": "OT Error",
+        "6": "UT Warning",
+        "7": "UT Error",
+        "8": "AFE Error"
+      }
+    }
+  },
+  "module_temperatures": {
+    "module_0_max_temp": {
+      "address": 257,
+      "function_code": "0x03",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "Module 0 Max Temperature",
+      "rw": "R"
+    },
+    "module_1_max_temp": {
+      "address": 258,
+      "function_code": "0x03",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "Module 1 Max Temperature",
+      "rw": "R"
+    },
+    "module_2_max_temp": {
+      "address": 259,
+      "function_code": "0x03",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "Module 2 Max Temperature",
+      "rw": "R"
+    },
+    "module_3_max_temp": {
+      "address": 260,
+      "function_code": "0x03",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "Module 3 Max Temperature",
+      "rw": "R"
+    }
+  },
+  "cell_voltages": {
+    "module_0_cell_1": {
+      "address": 1024,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #1",
+      "rw": "R"
+    },
+    "module_0_cell_2": {
+      "address": 1025,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #2",
+      "rw": "R"
+    },
+    "module_0_cell_3": {
+      "address": 1026,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #3",
+      "rw": "R"
+    },
+    "module_0_cell_4": {
+      "address": 1027,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #4",
+      "rw": "R"
+    },
+    "module_0_cell_5": {
+      "address": 1028,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #5",
+      "rw": "R"
+    },
+    "module_0_cell_6": {
+      "address": 1029,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #6",
+      "rw": "R"
+    },
+    "module_0_cell_7": {
+      "address": 1030,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #7",
+      "rw": "R"
+    },
+    "module_0_cell_8": {
+      "address": 1031,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #8",
+      "rw": "R"
+    },
+    "module_0_cell_9": {
+      "address": 1032,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #9",
+      "rw": "R"
+    },
+    "module_0_cell_10": {
+      "address": 1033,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #10",
+      "rw": "R"
+    },
+    "module_0_cell_11": {
+      "address": 1034,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #11",
+      "rw": "R"
+    },
+    "module_0_cell_12": {
+      "address": 1035,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #12",
+      "rw": "R"
+    },
+    "module_0_cell_13": {
+      "address": 1036,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #13",
+      "rw": "R"
+    },
+    "module_0_cell_14": {
+      "address": 1037,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #14",
+      "rw": "R"
+    },
+    "module_0_cell_15": {
+      "address": 1038,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #15",
+      "rw": "R"
+    },
+    "module_0_cell_16": {
+      "address": 1039,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #16",
+      "rw": "R"
+    },
+    "module_0_cell_17": {
+      "address": 1040,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #17",
+      "rw": "R"
+    },
+    "module_0_cell_18": {
+      "address": 1041,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.001,
+      "unit": "V",
+      "description": "Module 0 Cell V #18",
+      "rw": "R"
+    }
+  },
+  "control_registers": {
+    "dc_contactor_control": {
+      "address": 512,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "DC Contactor Control Command (b0: 1=DC1 ON, 0=DC1 OFF)",
+      "rw": "W",
+      "type": "bitmask"
+    },
+    "error_reset": {
+      "address": 513,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Error Reset Command (0x0050: RBMS Error Reset)",
+      "rw": "W",
+      "type": "hex"
+    },
+    "system_lock_reset": {
+      "address": 514,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "System Lock Reset Command (0x0050: Erase System Lock Error)",
+      "rw": "W",
+      "type": "hex"
+    },
+    "ip_address_ab": {
+      "address": 515,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "RBMS IP Write [A.B] of IP Address [A.B.C.D]",
+      "rw": "W",
+      "type": "hex"
+    },
+    "ip_address_cd": {
+      "address": 516,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "RBMS IP Write [C.D] of IP Address [A.B.C.D]",
+      "rw": "W",
+      "type": "hex"
+    },
+    "rbms_reset": {
+      "address": 517,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "RBMS Reset After Setting IP Address (0xAA55)",
+      "rw": "W",
+      "type": "hex"
+    }
+  }
+} 

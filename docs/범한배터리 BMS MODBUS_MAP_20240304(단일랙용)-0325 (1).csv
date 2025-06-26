@@ -1,0 +1,474 @@
+,,,,,,,,,,,,,,,,
+Rack BMS TCP/IP MODBUS Protocol Definition,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+◆ Read Definition [Function Code 0X03 : Read Holding Register],,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+DATA,Unit,"Scale
+when Data read",Description,"Request
+Address(PLC)",RW,"Signed/
+Unsigned",Type,Remark,,,,,,,,
+,,,,,Address,Address,Address,Address,,한자연3/21,스팜0404,한자연 0408,,,,
+AI,V,10,Rack Voltage,0000,R,u,Decimal,RACK,751,705.2,7001,699.5,,,,
+AI,A,10,Rack Current,0001,R,s,Decimal,,,0/0.2,0,0,,,,
+AI,%,10,Battery SOC,0003,R,u,Decimal,,28,28,240,24,,7001,,5
+AI,ºC,10,Module Max Temperature,0004,R,s,Decimal,,10,26,140,26,,0,,820
+AI,ºC,10,Module Min Temperature,0005,R,s,Decimal,,7,24,120,24,,240,,580
+AI,ºC,10,Module Avg Temperature,0006,R,s,Decimal,,8.2,25.2,129,25.3,,140,,1000
+AI,V,1000,Battery Cell Max Voltage,0007,R,u,Decimal,,3.563,3.563,3539,3536,,120,,6362
+AI,V,1000,Battery Cell Min Voltage,0008,R,u,Decimal,,3.557,3.559,3532,3529,,129,,6365
+AI,V,1000,Battery Cell Avg Voltage,0009,R,u,Decimal,,3.56,3.561,3535,3531,,3539,,6368
+AI,%,1,Operating SOC Max,0010,R,u,Decimal,,11,90,95,110,,3532,,6366
+AI,%,1,Operating SOC Min,0011,R,u,Decimal,,0,5,5,0,,3535,,6367
+AI,V,1,Operating Voltage Max ,0012,R,u,Decimal,,820,820,820,818,,95,,6364
+AI,V,1,Operating Voltage Min  ,0013,R,u,Decimal,,580,580,580,580,,,,
+AI,%,10,Rack SOH,0014,R,u,Decimal,,100,100,1000,1000,,,,
+AI,V,100,Modue Voltage,0015,R,u,Decimal,Module0,6408,64.11,6362,6357,,,,
+AI,V,100,Modue Voltage,0016,R,u,Decimal,Module1,6410,64.11,6365,6358,,,,
+DI,-,-,"System Lock Rack/Module Status :  ""1"" Error or Fail / ""0"" None
+b15 ~ b12 : Reserved
+b11: EEPROM R/W Fail
+b10: MODBUS Communication Error [Single Rack : RBMS-PMS]
+b9: CAN Communication Error [Multi Rack : SBMS-RBMS]
+b8: PEC Error 
+b7: Vref2 Error
+b6:  AFE Error
+b5:  Reserved
+b4:  Reserved
+b3: Module BMS ↔ Rack BMS - Loss of Comm, SPI Communication Error
+b2: Reserved
+b1: Fuse Fail
+b0: Relay off Fail",0046,R,u,Bit Mask,,,,,,,,,
+DI,-,-,"System Lock Rack/Module Status :  ""1"" Error or Fail / ""0"" None
+b15: PRA Fail
+b14: PRA Fail
+b13: PRA Fail
+b12: Current Sensor Fail
+b11: Current Sensor Fail
+b10: Current Sensor Fail
+b9: Cell Temperature Imbalance Error
+b8:  Module/Cell Under Temperature Error
+b7:  Module/Cell Over Temperature Error
+b6: Cell V Imbalance Error   
+b5: Rack/Module/Cell Under Voltage Error
+b4: Rack/Module/Cell Over Voltage Error
+b3: Reserved
+b2: Reserved
+b1: Discharge Over Current Error
+b0: Charge Over Current Error",0047,R,u,Bit Mask,,,,,,,,,
+DI,-,-,"System Lock Self Test Status :  ""1"" Error or Fail / ""0"" None
+b15 ~ b9: Reserved
+b8: ST_External_Watchdog Fail, External Watchdog FB Fail
+b7: ST_Watchdog Test Fail 
+b6: ST_CAN Communication Test Fail
+b5: ST_SPI Communication Test Fail
+b4: ST_Clock Test Fail 
+b3: ST_ADC Test Fail 
+b2: ST_Flash Memory Chcecksum Fail
+b1: ST_GPIO_Output Test Fail
+b0: ST_GPIO_Input Test Fail",0048,R,u,Bit Mask,,,,,,,,,
+DI,-,-,"System Lock Self Test Status :  ""1"" Error or Fail / ""0"" None
+b15: ST_Interrupt Test Fail
+b14: ST_CPU_Timer2_Test Fail
+b13: ST_CPU_Timer1_Test Fail
+b12: ST_CPU_Timer0_Test Fail
+b11: Reserved
+b10: ST_RAM_L7 Test Fail 
+b9: ST_RAM_L6 Test Fail 
+b8: ST_RAM_L5 Test Fail 
+b7: ST_RAM_L4 Test Fail 
+b6: ST_RAM_L3 Test Fail 
+b5: ST_RAM_L2 Test Fail 
+b4: ST_RAM_L1 Test Fail 
+b3: ST_RAM_L0 Test Fail 
+b2: ST_Program Counter Test Fail
+b1: ST_FPU Resisters Fail
+b0: ST_CPU Resisters Fail",0049,R,u,Bit Mask,,,,,,,,,
+DI,-,-,"Battery System Alarm (Bit Mask) : ""1"" ON / ""0"" None
+b15~b9: Reserved
+b8: System Lock
+b7: HW Alarm
+b6: Low SOC
+b5: Cell Delta V
+b4: Discharge Over Current
+b3: Charge Over Current
+b2: Temperature(Over/ Under)
+b1: Under Voltage
+b0: Over Voltage",0050,R,u,Bit Mask,RACK,,,,,,,,
+DI,-,-,"Battery System operation Mode :  ""1"" ON / ""0"" None
+b15 ~ b4 : Reserved
+b3: Idle - RELAY  ON 
+b2: Discharging
+b1: Charging
+b0: Standby (1: Complete Initialize, 0: Initializing)",0051,R,u,Bit Mask,,1,1,,,,,,
+DI,-,-,"Battery System Warning Status :  ""1"" ON / ""0"" None
+b15 ~ b10 : Reserved
+b9: Cell Under Voltage Warning
+b8: Cell Over Voltage Warning 
+b7: Over SOC Warning (OSOCW)
+b6: Under SOC  Warning (USOCW)
+b5: Over Voltage Warning (OVW)
+b4: Under Voltage Warning (UVW)
+b3: Under Temperature Warning (UTW)
+b2: Over Temperature Warning (OTW)
+b1: Over Discharge Current Warning (ODCW)
+b0: Over Charge Current Warning (OCCW)",0052,R,u,Bit Mask,,,,,,,,,
+DI,-,-,"Battery System Error Status :  ""1"" ON / ""0"" None
+b15 ~ b14 : Reserved
+b13: System Lock
+b12: CAN Communication Error [SBMS-RBMS]
+b11: IEC60730 Self Diagnostic Error
+b10: Rack Under Voltage Error
+b9: Rack Over Voltage Error
+b8: Relay off Fail
+b7: Fuse Fail
+b6: PRA Fail
+b5: CT Sensor Fail
+b4: HV Sensor Fail
+b3: EEPROM R/W Fail
+b2: External Watchdog FB Fail
+b1: Over Discharge Current Fault (ODCF)
+b0: Over Charge Current Fault (OCCF)",0053,R,u,Bit Mask,,,한자연 4/4 b3 set Error,,,,,,
+DI,-,-,"Battery Module Error Status :  ""1"" ON / ""0"" None
+b15 ~ b11: Reserved
+b10 : AFE Error
+b9: Cell V Imbalance Warning
+b8: Module BMS ↔ Rack BMS - Loss of Comm (MRLOC)
+b7: Vref2 Error
+b6: PEC Error   
+b5: Cell V Imbalance Error                                                   
+b4: Cell Temperature Imbalance
+b3: Cell Under Temperature Error
+b2: Cell Over Temperature Error
+b1: Cell Under Voltage Error
+b0: Cell Over Voltage Error",0054,R,u,Bit Mask,,,,8 : b3 error,,,,,
+DI,-,-,"Error Code 1
+b15 : Cell Imbalance [V&T]
+b14: Relay off Fail
+B13: Main Fuse Fail
+b12: PRA Fail
+b11: Rack Under Voltage Error
+b10: Rack Over Voltage Error
+b9: Rack Discharge Over Current Error
+b8: Rack Charge Over Current Error
+b7: Current Sensor Fail
+b6: Invalid Pack Voltage Fail
+b5: EEPROM R/W Fail
+b4: External Watchdog FB Fail
+b3: Module Under Temperature Error
+b2: Module Over Temperature Error
+b1: Module Under Voltage Error
+b0: Module Over Voltage Error",0055,R,u,Bit Mask,RACK,,,"2058 : b1, b3, b11 error",,,,,
+DI,-,-,"Error Code 2
+b15 ~ b8 : Reserved
+b7: System Lock
+b6 : AFE  Error
+b5 : Vref2 Error
+b4 : CAN Communication Error [Multi Rack : SBMS-RBMS]
+b3 : MODBUS Communication Error [Single Rack : RBMS-PMS]
+b2: SPI Communication Error
+b1: PEC Error
+b0: IEC60730 Self Test Fail",0056,R,u,Bit Mask,,1000,Dec 8  (1000),8 : b3 error,,,,,
+DI,-,1,"Fire Alarm
+b15 : Fire Alarm [0: Normal / 1: Alarm]
+b14 ~ b1 : Reserved
+b0 : Smoke Sensor Status [0: Normal / 1: Fault]",0057,R,u,Bitmask,,,,,,,,,
+DI,-,1,"Communication Count [Reset Count : 10,000]
+Increased by Function Code 0x03 Command",0059,R,u,Decimal,,count중,count중,count중,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                        
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0060,R,u,Bit Mask,Module 0,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                          
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0061,R,u,Bit Mask,Module 1,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                    
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0062,R,u,Bit Mask,Module 2,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                   
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0063,R,u,Bit Mask,Module 3,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                          
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0064,R,u,Bit Mask,Module 4,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                          
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0065,R,u,Bit Mask,Module 5,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                   
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0066,R,u,Bit Mask,Module 6,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                   
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0067,R,u,Bit Mask,Module 7,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0068,R,u,Bit Mask,Module 8,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                    
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0069,R,u,Bit Mask,Module 9,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                     
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0070,R,u,Bit Mask,Module 10,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                         
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0071,R,u,Bit Mask,Module 11,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                   
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0072,R,u,Bit Mask,Module 12,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                 
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0073,R,u,Bit Mask,Module 13,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                 
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0074,R,u,Bit Mask,Module 14,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                               
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0075,R,u,Bit Mask,Module 15,,,,,,,,
+DI,-,-,"Module  Staus :  ""1"" ON / ""0"" None
+b15~b9 Reserved 
+b8 : AFE Error                                
+b7: UT Error                                          
+b6: UT Warning                                         
+b5: OT Error
+b4: OT Warning
+b3: OV Error
+b2: OV Warning
+b1: UV Error
+b0: UV Warning",0076,R,u,Bit Mask,Module 16,,,,,,,,
+AI,ºC,10,Module Max Temperature,0101,R,s,Decimal,Module0,100,,140,,,,,
+AI,ºC,10,Module Max Temperature,0102,R,s,Decimal,Module1,100,,140,,,,,
+AI,ºC,10,Module Max Temperature,0103,R,s,Decimal,Module2,90,,,,,,,
+AI,ºC,10,Module Max Temperature,0104,R,s,Decimal,Module3,90,,,,,,,
+AI,ºC,10,Module Max Temperature,0105,R,s,Decimal,Module4,90,,,,,,,
+AI,ºC,10,Module Max Temperature,0106,R,s,Decimal,Module5,,,,,,,,
+AI,ºC,10,Module Max Temperature,0107,R,s,Decimal,Module6,,,,,,,,
+AI,ºC,10,Module Max Temperature,0108,R,s,Decimal,Module7,90,,,,,,,
+AI,ºC,10,Module Max Temperature,0109,R,s,Decimal,Module8,80,,,,,,,
+AI,ºC,10,Module Max Temperature,0110,R,s,Decimal,Module9,80,,,,,,,
+AI,ºC,10,Module Max Temperature,0111,R,s,Decimal,Module10,90,,,,,,,
+AI,ºC,10,Module Max Temperature,0112,R,s,Decimal,Module11,,,,,,,,
+AI,ºC,10,Module Max Temperature,0113,R,s,Decimal,Module12,,,,,,,,
+AI,ºC,10,Module Max Temperature,0114,R,s,Decimal,Module13,,,,,,,,
+AI,ºC,10,Module Max Temperature,0115,R,s,Decimal,Module14,,,,,,,,
+AI,ºC,10,Module Max Temperature,0116,R,s,Decimal,Module15,,,,,,,,
+AI,ºC,10,Module Max Temperature,0117,R,s,Decimal,Module16,,,,,,,,
+AI,V,1000,Cell V #1,0400,R,u,Decimal,Module 0,3560,,3535,,,,,
+AI,V,1000,Cell V #2,0401,R,u,Decimal,,3561,,3535,,,,,
+AI,V,1000,Cell V #3,0402,R,u,Decimal,,3560,,3535,,,,,
+AI,V,1000,Cell V #4,0403,R,u,Decimal,,,,3537,,,,,
+AI,V,1000,Cell V #5,0404,R,u,Decimal,,,,3535,,,,,
+AI,V,1000,Cell V #6,0405,R,u,Decimal,,,,3536,,,,,
+AI,V,1000,Cell V #7,0406,R,u,Decimal,,,,3535,,,,,
+AI,V,1000,Cell V #8,0407,R,u,Decimal,,,,3535,,,,,
+AI,V,1000,Cell V #9,0408,R,u,Decimal,,,,3533,,,,,
+AI,V,1000,Cell V #10,0409,R,u,Decimal,,,,3535,,,,,
+AI,V,1000,Cell V #11,0410,R,u,Decimal,,,,3534,,,,,
+AI,V,1000,Cell V #12,0411,R,u,Decimal,,,,3535,,,,,
+AI,V,1000,Cell V #13,0412,R,u,Decimal,,,,3535,,,,,
+AI,V,1000,Cell V #14,0413,R,u,Decimal,,,,3536,,,,,
+AI,V,1000,Cell V #15,0414,R,u,Decimal,,,,3534,,,,,
+AI,V,1000,Cell V #16,0415,R,u,Decimal,,,,3535,,,,,
+AI,V,1000,Cell V #17,0416,R,u,Decimal,,3561,,3535,,,,,
+AI,V,1000,Cell V #18,0417,R,u,Decimal,,3560,,3534,,,,,
+AI,V,1000,Cell V #19,0418,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #20,0419,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #1,0430,R,u,Decimal,Module 1,,,,,,,,
+AI,V,1000,Cell V #2,0431,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #3,0432,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #4,0433,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #5,0434,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #6,0435,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #7,0436,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #8,0437,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #9,0438,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #10,0439,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #11,0440,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #12,0441,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #13,0442,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #14,0443,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #15,0444,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #16,0445,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #17,0446,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #18,0447,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #19,0448,R,u,Decimal,,,,,,,,,
+AI,V,1000,Cell V #20,0449,R,u,Decimal,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+◆ Write Definition [Function Code 0x06 : Write Single Register],,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+DATA,Unit,"Scale
+when Data read",Description,"Request
+Address(PLC)",RW,"Signed/
+Unsigned",Type,Remark,,,,,,,,
+,,,,,Address,Address,Address,Address,,,,,,,,
+AI,-,-,"DC Contactor Control Command
+b0 : ""1"" RBMS DC1 ON / ""0"" RBMS DC1 OFF
+b1 ~ b15 Reserved",0200,W,u,Bit Mask,Rack,,,,,,,,
+AI,-,,"Error Reset Command
+0x0050 : RBMS Error Reset
+[Error Code Read : Address 0055] Function Code 04",0201,W,u,HEX,Rack,,,,,,,,
+DI,-,-,"System Lock Reset Command
+0x0050 : Erase the System Lock Error in EEPROM",0202,W,u,HEX,Rack,,,,,,,,
+AI,-,,"RBMS IP Write [A.B] of IP Address [A.B.C.D]
+Example
+if IP Address 192.168.1.60
+0xC0A8 [C0=192 / A8=168]",0203,W,u,HEX,Rack,,,,,,,,
+AI,-,,"RBMS IP Write [C.D] of IP Address [A.B.C.D]
+Example
+if IP Address 192.168.1.60
+0x013C [1=1 / 3C=60]",0204,W,u,HEX,Rack,,,,,,,,
+AI,-,-,"RBMS Reset After Setting IP Address
+0xAA55",0205,W,u,HEX,Rack,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+◆ DC 1 [Relay] Control Warning Status,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+Warning,,,Description,"Request
+Address",Position,,Type,Remark,,,"Battery System Warning Status :  ""1"" ON / ""0"" None",,,,,
+,,,,,,,Address,Address,,,b15 ~ b10 : Reserved,,,,,
+Cell UV,,,b9 : Cell Under Voltage Warning,0052,Module,,Bit Mask,,,,b9: Cell Under Voltage Warning,,,,,
+Cell OV,,,b8 : Cell Over Voltage Warning,,,,,,,,b8: Cell Over Voltage Warning ,,,,,
+OV Warning,,,b5 : Over Voltage Warning,,Rack,,,,,,b7: Over SOC Warning (OSOCW),,,,,
+UV Warning,,,b4 : Under Voltage Warning,,,,,,,,b6: Under SOC  Warning (USOCW),,,,,
+UT Warning,,,b3 : Under Temperature Warning,,Module,,,,,,b5: Over Voltage Warning (OVW),,,,,
+OT Warning,,,b2 : Over Temperature Warning,,,,,,,,b4: Under Voltage Warning (UVW),,,,,
+ODCW,,,b1 : Over Discharge Current Warning,,Rack,,,,,,b3: Under Temperature Warning (UTW),,,,,
+OCCW,,,b0 : Over Charge Current Warning,,,,,,,,b2: Over Temperature Warning (OTW),,,,,
+Example,,,0000 0001 0000 0000 ,0052,Module Warning,,,,,,b1: Over Discharge Current Warning (ODCW),,,,,
+,,,- Cell Over Voltage Warning,,,,,,,,b0: Over Charge Current Warning (OCCW),,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+,* 5/23 한자연 PMS 설정 수정 필요 사항,,,,,,,,,,,,,,,
+,,"1. 타이틀 이름 바꾸기?, ",,,,,,,,,,,,,,
+,,2. 타이틀에 있는데 실제 메모리맵에 없는 것 처리 : 특정 값을 강제적으로 설정하도록?,,,,,,,,,,,,,,
+,,"3. 메모리 맵에 있는데, 타이틀에 없는 것 등록?",,,,,,,,,,,,,,
+,,"4. 모드버스 메모리에 Function code 설정이 없는것 같음. F03:read holding resgi(설정된 고정값)., F04=read input resgi(장비 운영중 센서에서 읽는값). F06=write register(R/W 메모리에 Data 쓸데 사용)",,,,,,,,,,,,,,
+,,"5. Pos 설정시 Function code 지정 필요. F03, addr 0=> 40001 번지, F04, addr 0 => 30001 번지, F04, addr 1 => 30002 번지 로 Assign이 되며, 메모리값을 일부는 F03 이고, 일부는 F04 임 ",,,,,,,,,,,,,,

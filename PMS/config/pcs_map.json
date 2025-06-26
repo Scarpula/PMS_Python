@@ -1,0 +1,880 @@
+{
+  "device_type": "PCS",
+  "description": "PCS 3Pi New Standard Modbus TCP 레지스터 맵 (Function Code 0x03/0x06: Parameter, 0x04: Metering)",
+  "function_codes": {
+    "read_holding_registers": "0x03",
+    "read_input_registers": "0x04",
+    "write_single_register": "0x06"
+  },
+  "parameter_registers": {
+    "system_capacity": {
+      "address": 0,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "시스템 용량",
+      "rw": "R",
+      "default": 250.0
+    },
+    "battery_charge_power": {
+      "address": 1,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "Batt 충전 전력 (충전 운전 모드 CP 전력량 설정)",
+      "rw": "RW",
+      "default": 10.0
+    },
+    "grid_discharge_power": {
+      "address": 2,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "Grid 방전 전력 (방전 운전 모드 CP 전력량 설정)",
+      "rw": "RW",
+      "default": 10.0
+    },
+    "ac_rated_voltage": {
+      "address": 3,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "AC 정격 전압 (계통 정격 전압 설정)",
+      "rw": "R",
+      "default": 380.0
+    },
+    "ac_low_voltage": {
+      "address": 4,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "AC 저 전압",
+      "rw": "R",
+      "default": 342.0
+    },
+    "ac_high_voltage": {
+      "address": 5,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "AC 과 전압",
+      "rw": "R",
+      "default": 418.0
+    },
+    "ac_rated_frequency": {
+      "address": 6,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "Hz",
+      "description": "AC 정격 주파수 (계통 정격 주파수 설정)",
+      "rw": "R",
+      "default": 60.0
+    },
+    "ac_low_frequency": {
+      "address": 7,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "Hz",
+      "description": "AC 저 주파수",
+      "rw": "R",
+      "default": 57.0
+    },
+    "ac_high_frequency": {
+      "address": 8,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "Hz",
+      "description": "AC 고 주파수",
+      "rw": "R",
+      "default": 63.0
+    },
+    "ac_rated_current": {
+      "address": 9,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "AC 정격 전류 설정 값",
+      "rw": "R",
+      "default": 379.8
+    },
+    "ac_overcurrent": {
+      "address": 10,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "AC 과전류",
+      "rw": "R",
+      "default": 417.8
+    },
+    "ac_overcurrent_trip": {
+      "address": 11,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "AC 과전류 Trip",
+      "rw": "R",
+      "default": 455.8
+    },
+    "battery_charge_voltage": {
+      "address": 12,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "Batt 충전 전압 설정 값",
+      "rw": "R",
+      "default": 788.0
+    },
+    "battery_low_voltage": {
+      "address": 13,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "Batt 저전압",
+      "rw": "R",
+      "default": 627.0
+    },
+    "battery_high_voltage": {
+      "address": 14,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "Batt 과 전압",
+      "rw": "R",
+      "default": 823.5
+    },
+    "battery_low_voltage_trip": {
+      "address": 15,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "Batt 저전압 Trip (Batt Eod Volt)",
+      "rw": "R",
+      "default": 570.0
+    },
+    "battery_high_voltage_trip": {
+      "address": 16,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "Batt 과전압 Trip",
+      "rw": "R",
+      "default": 866.8
+    },
+    "battery_overcurrent": {
+      "address": 17,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "Batt 과 전류",
+      "rw": "R"
+    },
+    "battery_overcurrent_trip": {
+      "address": 18,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "Batt 과전류 Trip",
+      "rw": "R"
+    }
+  },
+  "metering_registers": {
+    "grid_voltage_r": {
+      "address": 0,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "계통 R 상 선간 전압 (계통 선간 전압 RMS)",
+      "rw": "R"
+    },
+    "grid_voltage_s": {
+      "address": 1,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "계통 S 상 선간 전압",
+      "rw": "R"
+    },
+    "grid_voltage_t": {
+      "address": 2,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "계통 T 상 선간 전압",
+      "rw": "R"
+    },
+    "inverter_current_r": {
+      "address": 3,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "인버터 R 상 전류 (인버터 상 전류 RMS)",
+      "rw": "R"
+    },
+    "inverter_current_s": {
+      "address": 4,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "인버터 S 상 전류",
+      "rw": "R"
+    },
+    "inverter_current_t": {
+      "address": 5,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "인버터 T 상 전류",
+      "rw": "R"
+    },
+    "grid_frequency": {
+      "address": 6,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "Hz",
+      "description": "계통 주파수",
+      "rw": "R"
+    },
+    "ac_active_power": {
+      "address": 7,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "AC 유효 전력",
+      "rw": "R"
+    },
+    "reserved_1": {
+      "address": 8,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 1,
+      "unit": "kW",
+      "description": "Reserved",
+      "rw": "R"
+    },
+    "reserved_2": {
+      "address": 9,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 1,
+      "unit": "kVar",
+      "description": "Reserved",
+      "rw": "R"
+    },
+    "ac_power_factor": {
+      "address": 10,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "%",
+      "description": "AC 역율",
+      "rw": "R"
+    },
+    "dc_link_voltage": {
+      "address": 11,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "DC Link 전압",
+      "rw": "R"
+    },
+    "battery_voltage": {
+      "address": 12,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "Battery 전압",
+      "rw": "R"
+    },
+    "battery_current": {
+      "address": 13,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "Battery 충/방전 전류",
+      "rw": "R"
+    },
+    "battery_instantaneous_power": {
+      "address": 14,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "Battery 순시 전력 (Battery 충/방전 전력)",
+      "rw": "R"
+    },
+    "ac_charge_energy_kwh": {
+      "address": 15,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kWh",
+      "description": "AC 충전 적산 전력량(kW) (0~999.0 kWh)",
+      "rw": "R"
+    },
+    "ac_charge_energy_mwh": {
+      "address": 16,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "MWh",
+      "description": "AC 충전 적산 전력량(MW) (0~9999 MWh)",
+      "rw": "R"
+    },
+    "ac_discharge_energy_kwh": {
+      "address": 17,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kWh",
+      "description": "AC 방전 적산 전력량(kW) (0~999.0 kWh)",
+      "rw": "R"
+    },
+    "ac_discharge_energy_mwh": {
+      "address": 18,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "MWh",
+      "description": "AC 방전 적산 전력량(MW) (0~9999 MWh)",
+      "rw": "R"
+    },
+    "dc_charge_energy_kwh": {
+      "address": 19,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kWh",
+      "description": "DC 충전 적산 전력량(kW) (0~999.0 kWh)",
+      "rw": "R"
+    },
+    "dc_charge_energy_mwh": {
+      "address": 20,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "MWh",
+      "description": "DC 충전 적산 전력량(MW) (0~9999 MWh)",
+      "rw": "R"
+    },
+    "dc_discharge_energy_kwh": {
+      "address": 21,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kWh",
+      "description": "DC 방전 적산 전력량(kW) (0~999.0 kWh)",
+      "rw": "R"
+    },
+    "dc_discharge_energy_mwh": {
+      "address": 22,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "MWh",
+      "description": "DC 방전 적산 전력량(MW) (0~9999 MWh)",
+      "rw": "R"
+    },
+    "alarm_1": {
+      "address": 23,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "ALARM1",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "계통 R상 저전압",
+        "1": "계통 S상 저전압",
+        "2": "계통 T상 저전압",
+        "3": "계통 R상 고전압",
+        "4": "계통 S상 고전압",
+        "5": "계통 T상 고전압",
+        "6": "계통 Freq Low",
+        "7": "계통 Freq High",
+        "8": "인버터 R상 과전류",
+        "9": "인버터 S상 과전류",
+        "10": "인버터 T상 과전류",
+        "11": "계통 Phase Loss",
+        "12": "계통 Phase Rotation",
+        "13": "Batt 저전압 경보",
+        "14": "Batt 과전압 경보",
+        "15": "Batt 과전류 경보"
+      }
+    },
+    "trip_1": {
+      "address": 24,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "TRIP1",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "Batt 저전압",
+        "1": "Batt 과전압",
+        "2": "Batt 과전류",
+        "3": "계통 전압 UVP",
+        "4": "계통 전압 OVP",
+        "5": "계통 Freq Low",
+        "6": "계통 Freq High",
+        "7": "계통 전류 OCP",
+        "8": "Over Temp",
+        "9": "AC Fuse Fail",
+        "10": "PCS Magnet Fail",
+        "11": "DC Link High Cut",
+        "12": "Fan Fail Flag",
+        "13": "Dc Fuse Fail",
+        "14": "PCS Fault",
+        "15": "Emergency Stop"
+      }
+    },
+    "trip_2": {
+      "address": 25,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "TRIP2",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "Comm Error",
+        "1": "Bms Comm Error",
+        "2": "Bms Trip",
+        "3": "M1 Fuse Fail",
+        "4": "M2 Fuse Fail",
+        "5": "M3/M4 Fuse Trip",
+        "6": "GFD Trip",
+        "7": "화재 경보",
+        "8": "가스 경보",
+        "9": "DC SPD Fault",
+        "10": "AC SPD Fault",
+        "11": "Reserved",
+        "12": "Module Imbalance",
+        "13": "MC Fail",
+        "14": "Reserved",
+        "15": "Precharge FAIL"
+      }
+    },
+    "state_1": {
+      "address": 26,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "STATE1",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "PCS 운전 모드 (정지[0]/충전,정전압[1]/방전[2]/대기[3])",
+        "1": "PCS 운전 모드",
+        "2": "Pcs 정상 상태 (non[0]/Steady Status[1])",
+        "3": "Batt 상태 (Non[0]/충전[1]/방전[2])",
+        "4": "Batt 상태",
+        "5": "PCS 독립운전모드 (정지[0]/독립운전[1])",
+        "6": "Grid Black Out (계통 정전 표시)",
+        "7": "Empty Batt SOC (SOC 0%)",
+        "8": "Full Batt SOC (SOC 100%)",
+        "9": "Reserved",
+        "10": "Remote Enable (Remote[1]/Local[0])",
+        "11": "AC MC Close (Close[1]/Open[0])",
+        "12": "DC MC Close (Close[1]/Open[0])",
+        "13": "PR MC Close (Close[1]/Open[0])",
+        "14": "Total Fault (Trip Anyone)",
+        "15": "STATIC S/W (Close[1]/Open[0])"
+      }
+    }
+  },
+  "optional_metering_registers": {
+    "load_voltage_r": {
+      "address": 50,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "부하 AC R 상 선간 전압 (부하 선간 전압 RMS)",
+      "rw": "R"
+    },
+    "load_voltage_s": {
+      "address": 51,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "부하 AC S 상 선간 전압",
+      "rw": "R"
+    },
+    "load_voltage_t": {
+      "address": 52,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "부하 AC T 상 선간 전압",
+      "rw": "R"
+    },
+    "load_current_r": {
+      "address": 53,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "부하 R 상 전류 (부하 상 전류 RMS)",
+      "rw": "R"
+    },
+    "load_current_s": {
+      "address": 54,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "부하 S 상 전류",
+      "rw": "R"
+    },
+    "load_current_t": {
+      "address": 55,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "부하 T 상 전류",
+      "rw": "R"
+    },
+    "load_frequency": {
+      "address": 56,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "Hz",
+      "description": "AC 주파수 (부하 주파수)",
+      "rw": "R"
+    },
+    "alarm_2": {
+      "address": 57,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "ALARM2 (독립운전)",
+      "rw": "R",
+      "type": "bitmask"
+    },
+    "trip_3": {
+      "address": 58,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "TRIP3 (무정전 기능)",
+      "rw": "R",
+      "type": "bitmask"
+    },
+    "state_2": {
+      "address": 59,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "STATE2 (Mccb 설치 모델)",
+      "rw": "R",
+      "type": "bitmask"
+    },
+    "load_active_power": {
+      "address": 60,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 1,
+      "unit": "W",
+      "description": "부하 유효 전력",
+      "rw": "R"
+    }
+  },
+  "control_registers": {
+    "pcs_reset": {
+      "address": 19,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "PCS Reset (Reset PCS Trip Flag, 0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "pcs_stop": {
+      "address": 20,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "PCS Stop (Pcs Stop Command, 0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "pcs_standby_start": {
+      "address": 21,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "PCS StandBy Start (Pcs Run Command, 0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "pcs_charge_start": {
+      "address": 22,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "PCS Charge Start (PCS Charge Command, 0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "pcs_regen_start": {
+      "address": 23,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "PCS Regen Start (PCS Regen Command, 0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "inv_start_mode": {
+      "address": 24,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Inv Start Mode (독립운전 Option, 0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "bms_contactor": {
+      "address": 26,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Bms Contactor (SDI, 0x55: all on, 0xAA: all off)",
+      "rw": "W"
+    },
+    "bms_reset": {
+      "address": 27,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "BMS Reset (SDI, BMS Reset all Rack, 0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "generator_onoff": {
+      "address": 28,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "Generator ON/OFF (0x55: ON, 0xAA: OFF, Option)",
+      "rw": "W"
+    },
+    "cvcrg_start": {
+      "address": 29,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "CVCRG Start (CV Charge Command Option, 0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "alarm_2": {
+      "address": 52,
+      "function_code": "0x04", 
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "ALARM2 (독립운전 기능 포함 장비만)",
+      "rw": "R",
+      "type": "bitmask",
+      "optional": true,
+      "bit_definitions": {
+        "0": "부하 R상 저전압",
+        "1": "부하 S상 저전압", 
+        "2": "부하 T상 저전압",
+        "3": "부하 R상 고전압",
+        "4": "부하 S상 고전압",
+        "5": "부하 T상 고전압",
+        "6": "부하 Freq Low",
+        "7": "부하 Freq High",
+        "8": "부하 R상 과전류",
+        "9": "부하 S상 과전류",
+        "10": "부하 T상 과전류",
+        "11": "GRID OVER LOAD",
+        "12": "STATIC SW O.T",
+        "13": "Reserved",
+        "14": "Reserved",
+        "15": "Reserved"
+      }
+    },
+    "trip_3": {
+      "address": 53,
+      "function_code": "0x04",
+      "data_type": "uint16", 
+      "scale": 1,
+      "unit": "",
+      "description": "TRIP3 (독립운전 기능 포함 장비만)",
+      "rw": "R",
+      "type": "bitmask",
+      "optional": true,
+      "bit_definitions": {
+        "0": "인버터 저전압",
+        "1": "인버터 고전압",
+        "2": "인버터 Freq Min",
+        "3": "인버터 Freq Max",
+        "4": "부하 과전류",
+        "5": "INTERNAL CAN FAIL",
+        "6": "Reserved",
+        "7": "Reserved",
+        "8": "M3 Fuse Trip",
+        "9": "M4 Fuse Trip",
+        "10": "Reserved",
+        "11": "Reserved",
+        "12": "Reserved",
+        "13": "Reserved",
+        "14": "Reserved",
+        "15": "Reserved"
+      }
+    }
+  },
+  "alarm_definitions": {
+    "alarm_1": {
+      "0": "계통 R상 저전압",
+      "1": "계통 S상 저전압",
+      "2": "계통 T상 저전압",
+      "3": "계통 R상 고전압",
+      "4": "계통 S상 고전압",
+      "5": "계통 T상 고전압",
+      "6": "계통 Freq Low",
+      "7": "계통 Freq High",
+      "8": "인버터 R상 과전류",
+      "9": "인버터 S상 과전류",
+      "10": "인버터 T상 과전류",
+      "11": "계통 Phase Loss",
+      "12": "계통 Phase Rotation",
+      "13": "Batt 저전압 경보",
+      "14": "Batt 과전압 경보",
+      "15": "Batt 과전류 경보"
+    },
+    "alarm_2": {
+      "0": "부하 R상 저전압",
+      "1": "부하 S상 저전압",
+      "2": "부하 T상 저전압",
+      "3": "부하 R상 고전압",
+      "4": "부하 S상 고전압",
+      "5": "부하 T상 고전압",
+      "6": "부하 Freq Low",
+      "7": "부하 Freq High",
+      "8": "부하 R상 과전류",
+      "9": "부하 S상 과전류",
+      "10": "부하 T상 과전류",
+      "11": "GRID OVER LOAD",
+      "12": "STATIC SW O.T"
+    }
+  },
+  "trip_definitions": {
+    "trip_1": {
+      "0": "Batt 저전압",
+      "1": "Batt 과전압",
+      "2": "Batt 과전류",
+      "3": "계통 전압 UVP",
+      "4": "계통 전압 OVP",
+      "5": "계통 Freq Low",
+      "6": "계통 Freq High",
+      "7": "계통 전류 OCP",
+      "8": "Over Temp",
+      "9": "AC Fuse Fail",
+      "10": "PCS Magnet Fail",
+      "11": "DC Link High Cut",
+      "12": "Fan Fail Flag",
+      "13": "Dc Fuse Fail",
+      "14": "PCS Fault",
+      "15": "Emergency Stop"
+    },
+    "trip_2": {
+      "0": "Comm Error",
+      "1": "Bms Comm Error",
+      "2": "Bms Trip",
+      "3": "M1 Fuse Fail",
+      "4": "M2 Fuse Fail",
+      "5": "M3/M4 Fuse Trip",
+      "6": "GFD Trip",
+      "7": "화재 경보",
+      "8": "가스 경보",
+      "9": "DC SPD Fault",
+      "10": "AC SPD Fault",
+      "12": "Module Imbalance",
+      "13": "MC Fail",
+      "15": "Precharge FAIL"
+    },
+    "trip_3": {
+      "0": "인버터 저전압",
+      "1": "인버터 고전압",
+      "2": "인버터 Freq Min",
+      "3": "인버터 Freq Max",
+      "4": "부하 과전류",
+      "5": "INTERNAL CAN FAIL",
+      "8": "M3 Fuse Trip",
+      "9": "M4 Fuse Trip"
+    }
+  },
+  "status_definitions": {
+    "state_1": {
+      "0": "PCS 운전 모드 (정지[0]/충전,정전압[1]/방전[2]/대기[3])",
+      "2": "Pcs 정상 상태 (non[0]/Steady Status[1])",
+      "3": "Batt 상태 (Non[0]/충전[1]/방전[2])",
+      "5": "PCS 독립운전모드 (정지[0]/독립운전[1])",
+      "6": "Grid Black Out (계통 정전 표시)",
+      "7": "Empty Batt SOC (SOC 0%)",
+      "8": "Full Batt SOC (SOC 100%)",
+      "10": "Remote Enable (Remote[1]/Local[0])",
+      "11": "AC MC Close (Close[1]/Open[0])",
+      "12": "DC MC Close (Close[1]/Open[0])",
+      "13": "PR MC Close (Close[1]/Open[0])",
+      "14": "Total Fault (Trip Anyone)",
+      "15": "STATIC S/W (Close[1]/Open[0])"
+    }
+  }
+} 

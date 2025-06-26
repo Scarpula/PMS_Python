@@ -1,0 +1,888 @@
+{
+  "device_type": "DCDC",
+  "description": "DCDC 스마트팜 Modbus TCP 레지스터 맵 (Function Code 0x03/0x06: Parameter, 0x04: Metering)",
+  "function_codes": {
+    "read_holding_registers": "0x03",
+    "read_input_registers": "0x04", 
+    "write_single_register": "0x06"
+  },
+  "parameter_registers": {
+    "system_capacity": {
+      "address": 0,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "시스템 용량",
+      "rw": "R",
+      "default": 20.0
+    },
+    "reserved_1": {
+      "address": 1,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "",
+      "description": "RESERVED",
+      "rw": "R"
+    },
+    "generation_limit_power": {
+      "address": 2,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "발전제한전력",
+      "rw": "RW",
+      "default": 20.0
+    },
+    "input_rated_voltage": {
+      "address": 3,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "입력 정격전압",
+      "rw": "R",
+      "default": 265.0
+    },
+    "input_low_voltage_alarm": {
+      "address": 4,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "입력 저전압 ALARM",
+      "rw": "R",
+      "default": 250.0
+    },
+    "input_high_voltage_alarm": {
+      "address": 5,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "입력 과전압 ALARM",
+      "rw": "R",
+      "default": 550.0
+    },
+    "input_low_voltage_trip": {
+      "address": 6,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "입력 저전압 TRIP",
+      "rw": "R",
+      "default": 200.0
+    },
+    "input_high_voltage_trip": {
+      "address": 7,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "입력 과전압 TRIP",
+      "rw": "R",
+      "default": 600.0
+    },
+    "input_rated_current": {
+      "address": 8,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "입력 정격전류",
+      "rw": "R",
+      "default": 53.0
+    },
+    "input_overcurrent_alarm": {
+      "address": 9,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "입력 과전류 ALARM",
+      "rw": "R",
+      "default": 57.3
+    },
+    "input_overcurrent_trip": {
+      "address": 10,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "입력 과전류 TRIP",
+      "rw": "R",
+      "default": 61.6
+    },
+    "output_rated_voltage": {
+      "address": 11,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "출력 정격전압",
+      "rw": "R",
+      "default": 821.0
+    },
+    "output_low_voltage_alarm": {
+      "address": 12,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "출력 저전압 ALARM",
+      "rw": "R",
+      "default": 594.0
+    },
+    "output_high_voltage_alarm": {
+      "address": 13,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "출력 과전압 ALARM",
+      "rw": "R",
+      "default": 824.0
+    },
+    "output_low_voltage_trip": {
+      "address": 14,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "출력 저전압 TRIP",
+      "rw": "R",
+      "default": 590.0
+    },
+    "output_high_voltage_trip": {
+      "address": 15,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "출력 과전압 TRIP",
+      "rw": "R",
+      "default": 824.0
+    },
+    "output_rated_current": {
+      "address": 16,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "출력 정격전류",
+      "rw": "R",
+      "default": 33.7
+    },
+    "output_overcurrent_alarm": {
+      "address": 17,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "출력 과전류 ALARM",
+      "rw": "R",
+      "default": 37.0
+    },
+    "output_overcurrent_trip": {
+      "address": 18,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "출력 과전류 TRIP",
+      "rw": "R",
+      "default": 40.4
+    },
+    "input_ct_rate": {
+      "address": 19,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "",
+      "description": "입력 CT RATE",
+      "rw": "R",
+      "default": 100.0
+    },
+    "output_ct_rate": {
+      "address": 20,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "",
+      "description": "출력 CT RATE",
+      "rw": "R",
+      "default": 100.0
+    },
+    "mppt_start_voltage": {
+      "address": 21,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "MPPT 시작 전압",
+      "rw": "R",
+      "default": 265.0
+    },
+    "grid_low_voltage_alarm": {
+      "address": 22,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "계통 저전압 Alarm",
+      "rw": "R",
+      "default": 594.0
+    },
+    "grid_high_voltage_alarm": {
+      "address": 23,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "계통 과전압 Alarm",
+      "rw": "R",
+      "default": 824.0
+    },
+    "grid_low_voltage_trip": {
+      "address": 24,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "계통 저전압 Trip",
+      "rw": "R",
+      "default": 590.0
+    },
+    "grid_high_voltage_trip": {
+      "address": 25,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "계통 과전압 Trip",
+      "rw": "R",
+      "default": 827.0
+    },
+    "heatsink_limit_temp": {
+      "address": 26,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "방열판 제한 온도",
+      "rw": "R",
+      "default": 90.0
+    },
+    "reactor_limit_temp": {
+      "address": 27,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "리액터 제한 온도",
+      "rw": "R",
+      "default": 150.0
+    },
+    "pv_restart_dc_voltage": {
+      "address": 28,
+      "function_code": "0x03",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "PV Re-Start DC 전압",
+      "rw": "R",
+      "default": 700.0
+    }
+  },
+  "metering_registers": {
+    "input_voltage": {
+      "address": 0,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "입력 전압",
+      "rw": "R"
+    },
+    "input_cap_voltage": {
+      "address": 1,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "입력 CAP 전압",
+      "rw": "R"
+    },
+    "output_voltage": {
+      "address": 2,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "출력 전압 (DC LINK 전압)",
+      "rw": "R"
+    },
+    "dc_grid_voltage": {
+      "address": 3,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "V",
+      "description": "DC 계통 전압 (DC GRID 전압)",
+      "rw": "R"
+    },
+    "input_current": {
+      "address": 4,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "입력 TOTAL 전류",
+      "rw": "R"
+    },
+    "output_current": {
+      "address": 5,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "출력 전류",
+      "rw": "R"
+    },
+    "input_power": {
+      "address": 6,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "입력 전력",
+      "rw": "R"
+    },
+    "output_power": {
+      "address": 7,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "kW",
+      "description": "출력 전력",
+      "rw": "R"
+    },
+    "temperature_1": {
+      "address": 8,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "온도 1 (Heat Sink IGBT A)",
+      "rw": "R"
+    },
+    "alarm_1": {
+      "address": 9,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "ALARM 1",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "입력 저전압",
+        "1": "입력 과전압",
+        "2": "출력 저전압 (DcLink 저전압)",
+        "3": "출력 과전압 (DcLink 과전압)",
+        "4": "입력 과전류",
+        "5": "출력 과전류",
+        "6": "DC GRID 저전압",
+        "7": "DC GRID 과전압",
+        "8": "A상 입력 과전류 (MPI 개별 상 과전류)",
+        "9": "B상 입력 과전류",
+        "10": "C상 입력 과전류",
+        "11": "Reserved",
+        "12": "Reserved",
+        "13": "Reserved",
+        "14": "Reserved",
+        "15": "Reserved"
+      }
+    },
+    "alarm_2": {
+      "address": 10,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "ALARM 2",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "Reserved",
+        "1": "Reserved",
+        "2": "Reserved",
+        "3": "Reserved",
+        "4": "Reserved",
+        "5": "Reserved",
+        "6": "Reserved",
+        "7": "Reserved",
+        "8": "BUILD ALARM 1 (RESERVED)",
+        "9": "BUILD ALARM 2 (RESERVED)",
+        "10": "BUILD ALARM 3 (RESERVED)",
+        "11": "BUILD ALARM 4 (RESERVED)",
+        "12": "BUILD ALARM 5 (RESERVED)",
+        "13": "BUILD ALARM 6 (RESERVED)",
+        "14": "BUILD ALARM 7 (RESERVED)",
+        "15": "BUILD ALARM 8 (RESERVED)"
+      }
+    },
+    "trip_1": {
+      "address": 11,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "TRIP 1",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "입력 저전압",
+        "1": "입력 과전압",
+        "2": "출력 저전압 (DcLink 저전압)",
+        "3": "출력 과전압 (DcLink 과전압)",
+        "4": "입력 과전류 (Total 전류)",
+        "5": "출력 과전류",
+        "6": "HSINK OT A (Over Temp)",
+        "7": "출력 FUSE FAIL",
+        "8": "입력 MC Fail",
+        "9": "출력 MC Fail",
+        "10": "Pre MC Fail",
+        "11": "PWM Fail",
+        "12": "Esd Stop",
+        "13": "A상 입력 과전류",
+        "14": "B상 입력 과전류",
+        "15": "C상 입력 과전류"
+      }
+    },
+    "trip_2": {
+      "address": 12,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "TRIP 2",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "계통 저전압 (DC-BUS 전압)",
+        "1": "계통 과전압 (DC-BUS 전압)",
+        "2": "입력 FUSE FAIL",
+        "3": "Pre-Charge Fail",
+        "4": "HSINK OT B (Over Temp)",
+        "5": "HSINK OT C (Over Temp)",
+        "6": "OT4",
+        "7": "OT5",
+        "8": "OT6",
+        "9": "Imbalance Phase A",
+        "10": "Imbalance Phase B",
+        "11": "Imbalance Phase C",
+        "12": "Reserved",
+        "13": "Reserved",
+        "14": "Reserved",
+        "15": "Internal Comm Err"
+      }
+    },
+    "trip_3": {
+      "address": 13,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "TRIP 3",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "GFD FAULT",
+        "1": "SPD FAULT",
+        "2": "BUILD TRIP 3 (RESERVED)",
+        "3": "BUILD TRIP 4 (RESERVED)",
+        "4": "BUILD TRIP 5 (RESERVED)",
+        "5": "BUILD TRIP 6 (RESERVED)",
+        "6": "SPD Fault",
+        "7": "BUILD TRIP 8 (RESERVED)",
+        "8": "Reserved",
+        "9": "Reserved",
+        "10": "Reserved",
+        "11": "Reserved",
+        "12": "Reserved",
+        "13": "Reserved",
+        "14": "Reserved",
+        "15": "Reserved"
+      }
+    },
+    "status_1": {
+      "address": 14,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "STATUS 1",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "Reserved",
+        "1": "Reserved",
+        "2": "Reserved",
+        "3": "Reserved",
+        "4": "입력 MC Close",
+        "5": "출력 MC Close",
+        "6": "Pre MC Close",
+        "7": "Remote Flag (원격 제어 가능 Flag)",
+        "8": "PV 전력 제한 (Pv 전력 제한 운전 시 Set)",
+        "9": "RESERVED",
+        "10": "충전 전류 제한",
+        "11": "Total Fail (Fail 상태 값이 0이 아니면 Set)",
+        "12": "출력 전압 제한 (출력 전압 제한 Flag)",
+        "13": "Batt 만충 Flag (PV) (batt 만충 Flag)",
+        "14": "Reserved",
+        "15": "Reserved"
+      }
+    },
+    "status_2": {
+      "address": 15,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "STATUS 2",
+      "rw": "R",
+      "type": "bitmask",
+      "bit_definitions": {
+        "0": "CNV 정지 상태 (정지시)",
+        "1": "대기운전 상태",
+        "2": "충전운전 상태",
+        "3": "방전운전 상태",
+        "4": "독립운전 상태",
+        "5": "RESERVED (대기운전시)",
+        "6": "RESERVED (발전운전시)",
+        "7": "정상 상태 (non[0]/Steady Status[1])",
+        "8": "Reserved",
+        "9": "Reserved",
+        "10": "Reserved",
+        "11": "Reserved",
+        "12": "Reserved",
+        "13": "Reserved",
+        "14": "Reserved",
+        "15": "Reserved"
+      }
+    },
+    "version": {
+      "address": 16,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "VERSION (상위: HMI, 하위: DSP)",
+      "rw": "R"
+    },
+    "input_current_a": {
+      "address": 17,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "A 상 입력 전류",
+      "rw": "R"
+    },
+    "input_current_b": {
+      "address": 18,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "B 상 입력 전류",
+      "rw": "R"
+    },
+    "input_current_c": {
+      "address": 19,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "A",
+      "description": "C 상 입력 전류",
+      "rw": "R"
+    },
+    "temperature_2": {
+      "address": 20,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "온도 2 (Heat Sink IGBT B)",
+      "rw": "R"
+    },
+    "temperature_3": {
+      "address": 21,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "온도 3 (Heat Sink IGBT C)",
+      "rw": "R"
+    },
+    "temperature_4": {
+      "address": 22,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "온도 4 (Reserved)",
+      "rw": "R"
+    },
+    "temperature_5": {
+      "address": 23,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "온도 5 (Reserved)",
+      "rw": "R"
+    },
+    "temperature_6": {
+      "address": 24,
+      "function_code": "0x04",
+      "data_type": "int16",
+      "scale": 0.1,
+      "unit": "°C",
+      "description": "온도 6 (Reserved)",
+      "rw": "R"
+    },
+    "total_discharge_kwh": {
+      "address": 25,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kWh",
+      "description": "누적 적산 KWH 방전량",
+      "rw": "R"
+    },
+    "total_discharge_mwh": {
+      "address": 26,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "MWh",
+      "description": "누적 적산 MWH 방전량",
+      "rw": "R"
+    },
+    "total_charge_kwh": {
+      "address": 27,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kWh",
+      "description": "누적 적산 KWH 충전량",
+      "rw": "R"
+    },
+    "total_charge_mwh": {
+      "address": 28,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "MWh",
+      "description": "누적 적산 MWH 충전량",
+      "rw": "R"
+    },
+    "yesterday_kwh": {
+      "address": 29,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kWh",
+      "description": "전일 KWH 발전량",
+      "rw": "R"
+    },
+    "today_kwh": {
+      "address": 30,
+      "function_code": "0x04",
+      "data_type": "uint16",
+      "scale": 0.1,
+      "unit": "kWh",
+      "description": "금일 KWH 발전량",
+      "rw": "R"
+    }
+  },
+  "control_registers": {
+    "reset_command": {
+      "address": 100,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "RESET Command (0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "stop_command": {
+      "address": 101,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "STOP Command (0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "ready_command": {
+      "address": 102,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "READY Command (0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "charge_command": {
+      "address": 103,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "CHARGE Command (0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "regen_command": {
+      "address": 104,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "REGEN Command (0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "start_command": {
+      "address": 105,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "START Command (독립 운전, 0x55)",
+      "rw": "W",
+      "command_value": "0x55"
+    },
+    "ready_standby_command": {
+      "address": 106,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "READY Command (대기모드)",
+      "rw": "W"
+    },
+    "solar_command": {
+      "address": 107,
+      "function_code": "0x06",
+      "data_type": "uint16",
+      "scale": 1,
+      "unit": "",
+      "description": "SOLAR Command (충전모드)",
+      "rw": "W"
+    }
+  },
+  "alarm_definitions": {
+    "alarm_1": {
+      "0": "입력 저전압",
+      "1": "입력 과전압", 
+      "2": "출력 저전압",
+      "3": "출력 과전압",
+      "4": "입력 과전류",
+      "5": "출력 과전류",
+      "6": "DC GRID 저전압",
+      "7": "DC GRID 과전압",
+      "8": "A상 입력 과전류",
+      "9": "B상 입력 과전류",
+      "10": "C상 입력 과전류"
+    },
+    "alarm_2": {
+      "8": "BUILD ALARM 1",
+      "9": "BUILD ALARM 2",
+      "10": "BUILD ALARM 3",
+      "11": "BUILD ALARM 4",
+      "12": "BUILD ALARM 5",
+      "13": "BUILD ALARM 6",
+      "14": "BUILD ALARM 7",
+      "15": "BUILD ALARM 8"
+    }
+  },
+  "trip_definitions": {
+    "trip_1": {
+      "0": "입력 저전압",
+      "1": "입력 과전압",
+      "2": "출력 저전압",
+      "3": "출력 과전압",
+      "4": "입력 과전류",
+      "5": "출력 과전류",
+      "6": "HSINK OT A",
+      "7": "출력 FUSE FAIL",
+      "8": "입력 MC Fail",
+      "9": "출력 MC Fail",
+      "10": "Pre MC Fail",
+      "11": "PWM Fail",
+      "12": "Esd Stop",
+      "13": "A상 입력 과전류",
+      "14": "B상 입력 과전류",
+      "15": "C상 입력 과전류"
+    },
+    "trip_2": {
+      "0": "계통 저전압",
+      "1": "계통 과전압",
+      "2": "입력 FUSE FAIL",
+      "3": "Pre-Charge Fail",
+      "4": "HSINK OT B",
+      "5": "HSINK OT C",
+      "6": "OT4",
+      "7": "OT5",
+      "8": "OT6",
+      "9": "Imbalance Phase A",
+      "10": "Imbalance Phase B",
+      "11": "Imbalance Phase C",
+      "15": "Internal Comm Err"
+    },
+    "trip_3": {
+      "0": "GFD FAULT",
+      "1": "SPD FAULT",
+      "2": "BUILD TRIP 3",
+      "3": "BUILD TRIP 4",
+      "4": "BUILD TRIP 5",
+      "5": "BUILD TRIP 6",
+      "6": "SPD Fault",
+      "7": "BUILD TRIP 8"
+    }
+  },
+  "status_definitions": {
+    "status_1": {
+      "4": "입력 MC Close",
+      "5": "출력 MC Close",
+      "6": "Pre MC Close",
+      "7": "Remote Flag (원격 제어 가능)",
+      "8": "PV 전력 제한",
+      "9": "RESERVED",
+      "10": "충전 전류 제한",
+      "11": "Total Fail",
+      "12": "출력 전압 제한",
+      "13": "Batt 만충 Flag (PV)"
+    },
+    "status_2": {
+      "0": "CNV 정지 상태",
+      "1": "대기운전 상태",
+      "2": "충전운전 상태", 
+      "3": "방전운전 상태",
+      "4": "독립운전 상태",
+      "5": "RESERVED",
+      "6": "RESERVED", 
+      "7": "정상 상태"
+    }
+  }
+} 
