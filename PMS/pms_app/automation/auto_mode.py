@@ -306,7 +306,7 @@ class AutoModeController:
         
         if self.pcs_handler:
             # PCS Standby Start (21)
-            success = await self.pcs_handler.write_register('pcs_standby_start', 0x55)
+            success = await self.pcs_handler.write_register('pcs_standby_start', 85)
             if success:
                 self.logger.info("PCS 대기 모드 명령 전송 완료")
                 # 5초 후 자동으로 다음 상태로 전환 (state_machine에서 처리)
@@ -320,7 +320,7 @@ class AutoModeController:
         
         if self.pcs_handler:
             # Inverter Start Mode (24) - 독립운전 Option
-            success = await self.pcs_handler.write_register('inv_start_mode', 0x55)
+            success = await self.pcs_handler.write_register('inv_start_mode', 85)
             if success:
                 self.logger.info("PCS 독립 운전 모드 명령 전송 완료")
                 await self.state_machine.trigger_event('pcs_ready')
@@ -334,7 +334,7 @@ class AutoModeController:
         
         if self.dcdc_handler:
             # DCDC Reset Command (100)
-            success = await self.dcdc_handler.write_register('reset_command', 0x55)
+            success = await self.dcdc_handler.write_register('reset_command', 85)
             if success:
                 self.logger.info("DCDC 리셋 명령 전송 완료")
                 # 5초 후 자동으로 다음 상태로 전환 (state_machine에서 처리)
@@ -351,7 +351,7 @@ class AutoModeController:
         
         if self.dcdc_handler:
             # DCDC Solar Command (107) - 충전모드
-            success = await self.dcdc_handler.write_register('solar_command', 0x55)
+            success = await self.dcdc_handler.write_register('solar_command', 85)
             if success:
                 self.logger.info("DCDC 태양광 발전 모드 명령 전송 완료")
                 await self.state_machine.trigger_event('dcdc_ready')
@@ -368,7 +368,7 @@ class AutoModeController:
         
         if self.dcdc_handler:
             # DCDC Ready Standby Command (106) - 대기모드
-            success = await self.dcdc_handler.write_register('ready_standby_command', 0x55)
+            success = await self.dcdc_handler.write_register('ready_standby_command', 85)
             if success:
                 self.logger.info("DCDC 대기 모드 명령 전송 완료")
                 # 설정된 대기 시간 후 자동으로 정상 운전으로 복귀 (state_machine에서 처리)
@@ -382,17 +382,17 @@ class AutoModeController:
         if self.pcs_handler:
             try:
                 # 1. PCS Stop (20)
-                await self.pcs_handler.write_register('pcs_stop', 0x55)
+                await self.pcs_handler.write_register('pcs_stop', 85)
                 self.logger.info("PCS 정지 명령 전송")
                 await asyncio.sleep(5)
                 
                 # 2. PCS Standby Start (21) - PCS RUN
-                await self.pcs_handler.write_register('pcs_standby_start', 0x55)
+                await self.pcs_handler.write_register('pcs_standby_start', 85)
                 self.logger.info("PCS 대기 시작 명령 전송")
                 await asyncio.sleep(5)
                 
                 # 3. PCS Charge Start (22) - BAT 충전
-                await self.pcs_handler.write_register('pcs_charge_start', 0x55)
+                await self.pcs_handler.write_register('pcs_charge_start', 85)
                 self.logger.info("PCS 충전 시작 명령 전송")
                 
                 # 4. 충전 전력 설정 (battery_charge_power 레지스터에 전력값 설정)
@@ -418,9 +418,9 @@ class AutoModeController:
                     self.logger.info(f"SOC {charge_stop_threshold}% 도달 - 충전 완료")
                     
                     # PCS Stop -> 독립운전 모드로 전환
-                    await self.pcs_handler.write_register('pcs_stop', 0x55)
+                    await self.pcs_handler.write_register('pcs_stop', 85)
                     await asyncio.sleep(5)
-                    await self.pcs_handler.write_register('inv_start_mode', 0x55)
+                    await self.pcs_handler.write_register('inv_start_mode', 85)
                     
                     await self.state_machine.trigger_event('charge_complete')
                     break
@@ -440,17 +440,17 @@ class AutoModeController:
         """정지 처리"""
         self.logger.info("자동 운전 모드 정지 중...")
         
-        # 모든 제어를 기본 상태로 복귀
+        # 모든 제어를 수동 상태로 복귀
         try:
             if self.pcs_handler:
-                # 기본 독립운전 모드로 설정
-                await self.pcs_handler.write_register('inv_start_mode', 0x55)
+                # 수동 독립운전 모드로 설정
+                await self.pcs_handler.write_register('inv_start_mode', 85)
             
             if self.dcdc_handler:
                 # DCDC 정상 운전 모드로 설정
-                await self.dcdc_handler.write_register('solar_command', 0x55)
+                await self.dcdc_handler.write_register('solar_command', 85)
             
-            self.logger.info("기본 운전 상태로 복귀 완료")
+            self.logger.info("수동 운전 상태로 복귀 완료")
             await self.state_machine.trigger_event('stop_complete')
             
         except Exception as e:

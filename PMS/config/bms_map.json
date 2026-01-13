@@ -164,7 +164,7 @@
   },
   "status_registers": {
     "system_lock_status_1": {
-      "address": 70,
+      "address": 45,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -185,7 +185,7 @@
       }
     },
     "system_lock_status_2": {
-      "address": 71,
+      "address": 46,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -211,7 +211,7 @@
       }
     },
     "system_lock_self_test_1": {
-      "address": 72,
+      "address": 47,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -232,7 +232,7 @@
       }
     },
     "system_lock_self_test_2": {
-      "address": 73,
+      "address": 48,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -259,7 +259,7 @@
       }
     },
     "battery_system_alarm": {
-      "address": 80,
+      "address": 49,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -280,7 +280,7 @@
       }
     },
     "battery_system_operation_mode": {
-      "address": 81,
+      "address": 50,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -296,7 +296,7 @@
       }
     },
     "battery_system_warning": {
-      "address": 82,
+      "address": 51,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -318,7 +318,7 @@
       }
     },
     "battery_system_error": {
-      "address": 83,
+      "address": 52,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -344,7 +344,7 @@
       }
     },
     "battery_module_error": {
-      "address": 84,
+      "address": 53,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -367,7 +367,7 @@
       }
     },
     "error_code_1": {
-      "address": 85,
+      "address": 54,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -395,12 +395,12 @@
       }
     },
     "error_code_2": {
-      "address": 86,
+      "address": 55,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
       "unit": "",
-      "description": "Error Code 2 (Bit Mask)",
+      "description": "Error Code 2 (Bit Mask) - 실제 Modbus poll 확인: 55번 주소 = HEX 0x0037",
       "type": "bitmask",
       "rw": "R",
       "bit_definitions": {
@@ -415,7 +415,7 @@
       }
     },
     "fire_alarm": {
-      "address": 87,
+      "address": 56,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -429,7 +429,7 @@
       }
     },
     "communication_count": {
-      "address": 59,
+      "address": 58,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -440,7 +440,7 @@
   },
   "module_status_registers": {
     "module_0_status": {
-      "address": 96,
+      "address": 59,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -461,7 +461,7 @@
       }
     },
     "module_1_status": {
-      "address": 97,
+      "address": 60,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -482,7 +482,7 @@
       }
     },
     "module_2_status": {
-      "address": 98,
+      "address": 61,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -503,7 +503,7 @@
       }
     },
     "module_3_status": {
-      "address": 99,
+      "address": 62,
       "function_code": "0x03",
       "data_type": "uint16",
       "scale": 1,
@@ -728,7 +728,7 @@
   },
   "control_registers": {
     "dc_contactor_control": {
-      "address": 512,
+      "address": 200,
       "function_code": "0x06",
       "data_type": "uint16",
       "scale": 1,
@@ -738,27 +738,27 @@
       "type": "bitmask"
     },
     "error_reset": {
-      "address": 513,
+      "address": 201,
       "function_code": "0x06",
       "data_type": "uint16",
       "scale": 1,
       "unit": "",
-      "description": "Error Reset Command (0x0050: RBMS Error Reset)",
+      "description": "Error Reset Command (80: RBMS Error Reset)",
       "rw": "W",
       "type": "hex"
     },
     "system_lock_reset": {
-      "address": 514,
+      "address": 202,
       "function_code": "0x06",
       "data_type": "uint16",
       "scale": 1,
       "unit": "",
-      "description": "System Lock Reset Command (0x0050: Erase System Lock Error)",
+      "description": "System Lock Reset Command (80: Erase System Lock Error)",
       "rw": "W",
       "type": "hex"
     },
     "ip_address_ab": {
-      "address": 515,
+      "address": 203,
       "function_code": "0x06",
       "data_type": "uint16",
       "scale": 1,
@@ -768,7 +768,7 @@
       "type": "hex"
     },
     "ip_address_cd": {
-      "address": 516,
+      "address": 204,
       "function_code": "0x06",
       "data_type": "uint16",
       "scale": 1,
@@ -778,7 +778,7 @@
       "type": "hex"
     },
     "rbms_reset": {
-      "address": 517,
+      "address": 205,
       "function_code": "0x06",
       "data_type": "uint16",
       "scale": 1,

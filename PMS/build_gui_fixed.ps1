@@ -71,21 +71,46 @@ if (Test-Path "dist\PMS_GUI_Application.exe") {
         New-Item -ItemType Directory -Path "dist\config" | Out-Null
     }
     
-    # Copy yml files
-    Copy-Item "config\*.yml" "dist\config\" -ErrorAction SilentlyContinue
+    # Copy and modify yml files based on DCDC option
+    if ($DisableDCDC) {
+        Write-Host "DCDC Disabled: Modifying config.yml to remove DCDC device" -ForegroundColor Yellow
+        
+        # Read the original config.yml
+        $configContent = Get-Content "config\config.yml" -Raw
+        
+        # Remove DCDC device entry using regex
+        # This removes the entire DCDC device block including all its properties
+        $modifiedConfig = $configContent -replace '(?s)\s*-\s+name:\s*"[^"]*DCDC[^"]*".*?(?=\s*-\s+name:|\s*#|\Z)', ''
+        
+        # Write modified config to dist directory
+        $modifiedConfig | Out-File "dist\config\config.yml" -Encoding UTF8
+        
+        Write-Host "Modified config.yml: DCDC device entry removed" -ForegroundColor Green
+    } else {
+        # Copy original config.yml
+        Copy-Item "config\config.yml" "dist\config\" -ErrorAction SilentlyContinue
+        Write-Host "Copied: Original config.yml (all devices enabled)" -ForegroundColor Green
+    }
     
     # Copy json files (with DCDC option)
     if ($DisableDCDC) {
         Write-Host "DCDC Disabled: Excluding dcdc_map.json" -ForegroundColor Yellow
         Copy-Item "config\bms_map.json" "dist\config\" -ErrorAction SilentlyContinue
         Copy-Item "config\pcs_map.json" "dist\config\" -ErrorAction SilentlyContinue
+        Write-Host "Copied: bms_map.json, pcs_map.json" -ForegroundColor Green
     } else {
         Copy-Item "config\*.json" "dist\config\" -ErrorAction SilentlyContinue
+        Write-Host "Copied: All JSON files (including dcdc_map.json)" -ForegroundColor Green
     }
     
     Write-Host "Build completed successfully!" -ForegroundColor Green
     if ($DisableDCDC) {
-        Write-Host "DCDC device will be disabled in exe" -ForegroundColor Red
+        Write-Host "NOTE: DCDC device is DISABLED in this build" -ForegroundColor Red
+        Write-Host "      - dcdc_map.json file excluded" -ForegroundColor Yellow
+        Write-Host "      - DCDC device entry removed from config.yml" -ForegroundColor Yellow
+        Write-Host "      - Only BMS and PCS devices will be available" -ForegroundColor Yellow
+    } else {
+        Write-Host "NOTE: All devices (BMS, DCDC, PCS) are enabled" -ForegroundColor Green
     }
 } else {
     Write-Host "Build FAILED!" -ForegroundColor Red

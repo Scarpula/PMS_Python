@@ -7,9 +7,13 @@ mqtt:
   port: 1883
   username: ""
   password: ""
-  keepalive: 60
-  client_id: "pms_client"
+  keepalive: 30  # Keep-alive 시간 단축 (빠른 연결 상태 감지)
+  client_id: "pms_client"  # 기본 ID (실제 실행시 유니크한 ID로 변경됨)
   base_topic: "pms"
+  # 연결 안정성 설정
+  connection_retry_count: 5  # 연결 재시도 횟수
+  publish_retry_count: 3     # 발행 재시도 횟수
+  health_check_interval: 30  # 건강성 체크 간격 (초)
 
 # 장비 목록 (type 필수)
 devices:
@@ -18,7 +22,7 @@ devices:
     ip: "192.168.3.37"
     port: 502
     slave_id: 1
-    poll_interval: 2
+    poll_interval: 4
     
   - name: "대실마을_DCDC"
     type: "DCDC"
@@ -37,6 +41,7 @@ devices:
 # 자동 운전 모드 설정
 auto_mode:
   enabled: true
+  # 기본값 (DB에서 로드되면 덮어쓰여짐)
   soc_high_threshold: 88.0        # SOC 상한 임계값 (%)
   soc_low_threshold: 5.0          # SOC 하한 임계값 (%)
   soc_charge_stop_threshold: 25.0 # 충전 정지 SOC (%)
@@ -45,8 +50,30 @@ auto_mode:
   soc_monitor_interval: 2.0       # SOC 모니터링 간격 (초)
   charging_power: 10.0            # 충전 전력 (kW)
 
+# 데이터베이스 설정
+database:
+  enabled: true                   # DB 연동 활성화
+  url: "postgresql://iotplus:Iotplus12!%40@139.150.70.42:5432/EMS"
+  device_location: "대실마을"     # 장비 위치 식별자
+  load_config_from_db: true       # DB에서 자동운전 설정 로드
+
 # 로깅 설정
 logging:
   level: "INFO"
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  file: "logs/pms.log" 
+  file: "logs/pms.log"
+
+# 시스템 모니터링 설정
+monitoring:
+  enabled: true
+  check_interval: 10              # 모니터링 체크 간격 (초)
+  memory_threshold_mb: 800        # 메모리 사용량 임계값 (MB) - 증가
+  cpu_threshold_percent: 90       # CPU 사용률 임계값 (%) - 증가
+  thread_threshold: 100           # 스레드 수 임계값 - 증가
+
+# 자동 복구 설정
+recovery:
+  enabled: true
+  max_attempts: 5                 # 최대 복구 시도 횟수 - 증가
+  cooldown_seconds: 120           # 복구 시도 간격 (초) - 증가
+  restart_on_emergency: false     # 긴급 상황 시 시스템 재시작 여부 

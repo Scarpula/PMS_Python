@@ -32,7 +32,6 @@ class DeviceFactory:
     def _check_required_files(cls, device_type: str) -> bool:
         """
         장비 타입에 필요한 파일들이 존재하는지 확인합니다.
-        exe 환경에서는 항상 True를 반환합니다.
         
         Args:
             device_type: 장비 타입 ('BMS', 'DCDC', 'PCS')
@@ -45,13 +44,26 @@ class DeviceFactory:
         if device_type not in cls._required_files:
             return False
         
+        required_files = cls._required_files[device_type]
+        
         # PyInstaller로 실행되는 경우 (exe 환경)
         if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
-            print(f"정보: PyInstaller 환경에서 실행 중 - {device_type} 장비 활성화")
+            # exe 환경에서는 config 디렉토리가 실행 파일과 같은 위치에 있음
+            import sys
+            exe_dir = Path(sys.executable).parent if hasattr(sys, 'executable') else Path.cwd()
+            config_dir = exe_dir / "config"
+            
+            # 맵 파일만 확인 (핸들러는 exe에 포함되어 있음)
+            map_file = config_dir / required_files['map']
+            if not map_file.exists():
+                print(f"정보: PyInstaller 환경에서 {device_type} 맵 파일이 없습니다: {map_file}")
+                print(f"      {device_type} 장비가 비활성화됩니다.")
+                return False
+            
+            print(f"정보: PyInstaller 환경에서 {device_type} 장비 활성화 - 맵 파일 확인됨")
             return True
         
         # 일반 Python 환경에서는 파일 체크
-        required_files = cls._required_files[device_type]
         current_dir = Path(__file__).parent
         config_dir = current_dir.parent.parent / "config"
         
